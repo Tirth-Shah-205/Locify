@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import logo from './assests/logo.png'
 function Header() {
   return (
     <>
@@ -12,7 +13,7 @@ function Header() {
             <nav className="flex items-center space-x-4">
             
             <Link
-              to="/"
+              to="/Home"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
             >
               Home
@@ -27,7 +28,7 @@ function Header() {
 
 
             <Link
-              to="/login"
+              to="/"
               className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md transition duration-300 ease-in-out"
             >
               Logout
