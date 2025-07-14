@@ -44,7 +44,7 @@ function ViewPwd() {
         
         
         <div className="mt-6 text-center">
-            <Link to="/" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition duration-300 ease-in-out transform hover:scale-105">
+            <Link to="/Home" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded transition duration-300 ease-in-out transform hover:scale-105">
                 ⬅ Back to Home
             </Link>
         </div>
