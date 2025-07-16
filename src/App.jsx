@@ -35,8 +35,8 @@ function App() {
             <Route path="/Home" element={<Home />} />
             <Route path="/add-password" element={<AddPassword />} />
             <Route path="/" element={<Login />} />
-            <Route path="/view-pwd" element={<ViewPwd />} />
-            <Route path="/profile" element={<ProfilePassword />} />
+            <Route path="/view-pwd/:web_id/:user_id" element={<ViewPwd />} />
+            <Route path="/profile/:web_id/:user_id" element={<ProfilePassword />} />
             <Route path="/register" element={<Register/>} />
           </Routes>
         </main>

@@ -1,7 +1,34 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
 
 function ProfilePassword() {
+   const [profilePassword, setProfilePassword] = useState('');
+  const navigate = useNavigate();
+  const { web_id, user_id } = useParams();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      id: user_id,
+      profilePassword
+    };
+
+    try {
+      const response = await axios.post("http://localhost/Lockify/profilepwd.php", formData);
+
+      if (response.data.user) {
+        navigate(`/view-pwd/${web_id}/${user_id}`);
+      } else {
+        alert("Invalid Profile Password");
+      }
+    } catch (err) {
+      console.error("Error verifying password", err);
+      alert("Something went wrong. Try again.");
+    }
+  };
   return (
     <>
       <div className="min-h-screen bg-gray-900 text-gray-100 flex items-center justify-center p-6">
@@ -9,7 +36,7 @@ function ProfilePassword() {
           <h2 className="text-3xl font-extrabold text-blue-400 mb-6 text-center">
             Enter Profile Password
           </h2>
-          <form method="post" action="" className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             {/* Profile Password Input */}
             <div>
               <label htmlFor='ProfilePassword' className="block text-gray-300 text-sm font-bold mb-2">
@@ -19,20 +46,22 @@ function ProfilePassword() {
                 type="password"
                 placeholder="Your Master Password"
                 id="ProfilePassword"
-                name="profile_password"
+                name="profilePassword"
+                value={profilePassword}
+                onChange={(e) => setProfilePassword(e.target.value)}
                 className="shadow appearance-none border border-gray-700 rounded w-full py-2 px-3 text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-700 placeholder-gray-400"
                 required
               />
             </div>
 
-            <Link to = "/view-pwd">
+            
             <button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300 ease-in-out transform hover:scale-105"
             >
               View Details
             </button> 
-            </Link>
+    
           </form>
         </div>
       </div>
